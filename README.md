@@ -73,7 +73,7 @@ crontab -e
 ~~~
 ~~~
 # Restart the container to keep the VPN token valid.
-*/5 * * * * /usr/local/bin/podman exec -it VPNcontainer ssh -o BatchMode=yes -o ConnectTimeout=15 -t root@10.184.134.128 'date' > /dev/null 2>&1; if [ $? -eq 0 ]; then echo "$(date): SSH Succeeded" >> ~/Library/Logs/ssh.log 2>&1; else echo "$(date): SSH Failed" >> ~/Library/Logs/ssh.log 2>&1; /usr/local/bin/podman restart VPNcontainer; echo "$(date): VPNcontainer restarted" >> ~/Library/Logs/ssh.log 2>&1; fi
+*/5 * * * * /usr/local/bin/podman exec -it VPNcontainer ssh -o BatchMode=yes -o ConnectTimeout=15 -t root@10.184.134.128 'date' > /dev/null 2>&1; if [ $? -eq 0 ]; then echo "$(date): SSH Succeeded" >> /var/log/ssh.log 2>&1; else echo "$(date): SSH Failed" >> /var/log/ssh.log 2>&1; /usr/local/bin/podman restart VPNcontainer; echo "$(date): VPNcontainer restarted" >> /var/log/ssh.log 2>&1; fi
 
 ~~~
 
